@@ -76,16 +76,16 @@ class PDFFont
 		
 		@hmtx = @ttf.hmtx
 		@charWidths = {}
-	if @isCIDFont
-		for i, gid of @cmap.codeMap
-			@charWidths[i] = Math.round @hmtx.widths[gid] * @scaleFactor
-	else
-		@charWidths = ( @hmtx.widths[gid] * @scaleFactor for i, gid of @cmap.codeMap when i >= 32)
+		if @isCIDFont
+			for i, gid of @cmap.codeMap
+				@charWidths[i] = Math.round @hmtx.widths[gid] * @scaleFactor
+		else
+			@charWidths = ( @hmtx.widths[gid] * @scaleFactor for i, gid of @cmap.codeMap when i >= 32)
 
-		# Create a placeholder reference to be filled in embedTTF.
-		@ref = @document.ref
-			Type: 'Font'
-			Subtype: if @isCIDFont then 'CIDFontType2' else 'TrueType'
+			# Create a placeholder reference to be filled in embedTTF.
+			@ref = @document.ref
+				Type: 'Font'
+				Subtype: if @isCIDFont then 'CIDFontType2' else 'TrueType'
 			
 	embedTTF: (fn) ->
 		data = @subset.encode()
