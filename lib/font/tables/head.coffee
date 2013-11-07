@@ -43,7 +43,7 @@ class HeadTable extends Table
         table.writeShort @macStyle
         table.writeShort @lowestRecPPEM
         table.writeShort @fontDirectionHint
-        table.writeShort loca.type
+        table.writeShort loca.format
         table.writeShort @glyphDataFormat
         
         return table.data

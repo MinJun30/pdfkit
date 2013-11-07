@@ -25,7 +25,7 @@ class LocaTable extends Table
         
         # long format
         for offset in offsets when offset > 0xFFFF
-            for o in @offsets
+            for o in offsets
                 table.writeUInt32 o
                 
             return ret =

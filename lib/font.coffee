@@ -209,7 +209,7 @@ class PDFFont
 			unicode = ('0000' + map[code].toString(16)).slice(-4)
 			if isCIDFont
 				code = +code;
-				cidcode = ('00' + (code >> 16).toString(16)).slice(-2)
+				cidcode = ('00' + (code >> 8).toString(16)).slice(-2)
 				cidcode += ('00' + (code & 255).toString(16)).slice(-2)
 				range.push "<#{cidcode}><#{cidcode}><#{unicode}>"
 			else
