@@ -28,7 +28,7 @@ class Subset
 		for i in [0...text.length]
 			char = @unicodes[text.charCodeAt(i)]
 			if @isCIDFont
-				string += String.fromCharCode(char >> 16)
+				string += String.fromCharCode(char >> 8)
 				string += String.fromCharCode(char & 255)
 			else
 				string += String.fromCharCode(char)
