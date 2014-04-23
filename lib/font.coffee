@@ -124,6 +124,7 @@ class PDFFont
 			cmap.add toUnicodeCmap(@isCIDFont, if @isCIDFont then @subset.cmap else @subset.subset)
 			
 			ref = {}
+			ww = [1, charWidths]
 
 			if @isCIDFont
 				cIDSystemInfo = 
@@ -138,6 +139,7 @@ class PDFFont
 					Subtype: 'CIDFontType2'
 					FontDescriptor: @descriptor
 					DW: 1000
+					W: ww
 					CIDToGIDMap: 'Identity'
 
 				ref = 
@@ -256,7 +258,7 @@ class PDFFont
 		width = 0
 		minWidth=0
 		for i in [0...string.length]
-			charCode = string.charCodeAt(i) - if @isAFM then 0 else 32
+			charCode = string.charCodeAt(i) - if @isAFM or @isCIDFont then 0 else 32
 			width += @charWidths[charCode] or 0
 		
 		scale = size / 1000    
